@@ -18,9 +18,9 @@ app:
 apollo:
   meta: http://apollo-xlucky.cn
   bootstrap:
+    #命名空间，不指定默认 application
     namespaces: application
     enabled: true
-    #命名空间，不指定默认 application
     eagerLoad:
       enabled: true
 ```
