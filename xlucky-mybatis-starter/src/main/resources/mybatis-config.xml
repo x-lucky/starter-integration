@@ -37,7 +37,7 @@
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
 
-<!--    <plugins>-->
-<!--        <plugin interceptor="cn.xlucky.framework.mybatis.interceptor.PagerInfoInterceptor"/>-->
-<!--    </plugins>-->
+    <plugins>
+        <plugin interceptor="cn.xlucky.framework.mybatis.interceptor.PagerInfoInterceptor"/>
+    </plugins>
 </configuration>

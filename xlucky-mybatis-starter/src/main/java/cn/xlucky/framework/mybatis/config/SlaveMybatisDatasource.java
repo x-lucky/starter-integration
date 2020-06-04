@@ -34,7 +34,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @MapperScan(
-        basePackages = {"cn.xlucky.**.mapper"},
+        basePackages = {"cn.xlucky.**.mapper.slave"},
     sqlSessionFactoryRef = "slaveSqlSessionFactory"
 )
 @AutoConfigureBefore({DataSourceAutoConfiguration.class})

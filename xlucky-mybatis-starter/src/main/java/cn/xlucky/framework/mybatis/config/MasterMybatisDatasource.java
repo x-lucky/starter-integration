@@ -34,6 +34,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @AutoConfigureBefore({DataSourceAutoConfiguration.class})
 @ConditionalOnProperty(prefix = "hikari.datasource", name = {"masterJdbcUrl"})
 @ConfigurationProperties(prefix = "hikari.datasource")
+@MapperScan(
+        basePackages = {"cn.xlucky.**.mapper.master"},
+        sqlSessionFactoryRef = "masterSqlSessionFactory"
+)
 @Slf4j
 @Data
 public class MasterMybatisDatasource {

@@ -7,6 +7,12 @@ import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * BaseEntity
+ * @author xlucky
+ * @date 2020/6/4
+ * @version 1.0.0
+ */
 @JsonIgnoreProperties({"pk"})
 @Slf4j
 public abstract class BaseEntity implements Serializable {

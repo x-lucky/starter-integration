@@ -7,6 +7,13 @@ import lombok.Data;
 
 import java.util.List;
 
+
+/**
+ * 分页实体类
+ * @author xlucky
+ * @date 2020/6/4
+ * @version 1.0.0
+ */
 @ApiModel(
     description = "分页结果"
 )
