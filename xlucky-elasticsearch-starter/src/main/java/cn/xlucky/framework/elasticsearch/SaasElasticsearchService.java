@@ -53,11 +53,11 @@ public class SaasElasticsearchService {
     }
 
     public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId) {
-        return this.buildIndexAction(indexName, indexType, indexData, indexId, (Map)null);
+        return this.buildIndexAction(indexName, indexType, indexData, indexId, null);
     }
 
     public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId, Map<String, String> restParameters) {
-        Builder indexBuilder = (Builder)((Builder)(new Builder(indexData)).index(indexName)).type(indexType);
+        Builder indexBuilder = ((new Builder(indexData)).index(indexName)).type(indexType);
         if (indexId != null) {
             indexBuilder.id(indexId.toString());
         }
@@ -67,7 +67,7 @@ public class SaasElasticsearchService {
 
             while(var7.hasNext()) {
                 Entry<String, String> parameter = (Entry)var7.next();
-                indexBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                indexBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
@@ -75,17 +75,17 @@ public class SaasElasticsearchService {
     }
 
     public Delete buildDeleteAction(String indexName, String indexType, Object indexId) {
-        return this.buildDeleteAction(indexName, indexType, indexId, (Map)null);
+        return this.buildDeleteAction(indexName, indexType, indexId, null);
     }
 
     public Delete buildDeleteAction(String indexName, String indexType, Object indexId, Map<String, String> restParameters) {
-        io.searchbox.core.Delete.Builder deleteBuilder = (io.searchbox.core.Delete.Builder)((io.searchbox.core.Delete.Builder)(new io.searchbox.core.Delete.Builder(indexId.toString())).index(indexName)).type(indexType);
+        io.searchbox.core.Delete.Builder deleteBuilder = ((new io.searchbox.core.Delete.Builder(indexId.toString())).index(indexName)).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var6 = restParameters.entrySet().iterator();
 
             while(var6.hasNext()) {
                 Entry<String, String> parameter = (Entry)var6.next();
-                deleteBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                deleteBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
@@ -93,7 +93,7 @@ public class SaasElasticsearchService {
     }
 
     public void bulkActions(List<BulkableAction<?>> actions) throws IOException {
-        this.bulkActions(actions, (Map)null);
+        this.bulkActions(actions, null);
     }
 
     public void bulkActions(List<BulkableAction<?>> actions, Map<String, String> restParameters) throws IOException {
@@ -111,27 +111,27 @@ public class SaasElasticsearchService {
 
             while(var4.hasNext()) {
                 Entry<String, String> parameter = (Entry)var4.next();
-                bulkBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                bulkBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
         try {
-            BulkResult bulkResult = (BulkResult)this.jestHttpClient.execute(bulkBuilder.build());
+            BulkResult bulkResult = this.jestHttpClient.execute(bulkBuilder.build());
             if (!bulkResult.isSucceeded()) {
                 throw new IOException(bulkResult.getJsonString());
             } else {
-                action = (BulkableAction)actions.get(0);
+                action = actions.get(0);
                 LOGGER.info("Succeeded to operate documents, first index: {}, first type: {}, bulk size: {}", new Object[]{action.getIndex(), action.getType(), actions.size()});
             }
         } catch (IOException var6) {
-            action = (BulkableAction)actions.get(0);
+            action = actions.get(0);
             LOGGER.error(String.format("Failed to operate documents, first index: %s, first type: %s, bulk size: %s", action.getIndex(), action.getType(), actions.size()), var6);
             throw var6;
         }
     }
 
     public void index(String indexName, String indexType, Object indexData, Object indexId) throws IOException {
-        this.index(indexName, indexType, (Object)indexData, (Object)indexId, (Map)null);
+        this.index(indexName, indexType, indexData, indexId, null);
     }
 
     public void index(String indexName, String indexType, Object indexData, Object indexId, Map<String, String> restParameters) throws IOException {
@@ -149,7 +149,7 @@ public class SaasElasticsearchService {
     }
 
     public void indexAsync(String indexName, String indexType, Object indexData, Object indexId) {
-        this.indexAsync(indexName, indexType, indexData, indexId, (Map)null);
+        this.indexAsync(indexName, indexType, indexData, indexId, null);
     }
 
     public void indexAsync(final String indexName, final String indexType, final Object indexData, final Object indexId, Map<String, String> restParameters) {
@@ -159,7 +159,7 @@ public class SaasElasticsearchService {
 
             while(var7.hasNext()) {
                 Entry<String, String> parameter = (Entry)var7.next();
-                bulkBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                bulkBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
@@ -181,7 +181,7 @@ public class SaasElasticsearchService {
     }
 
     public void index(String indexName, String indexType, List<Object> indexDataList, String indexIdField) throws IOException {
-        this.index(indexName, indexType, (List)indexDataList, (String)indexIdField, (Map)null);
+        this.index(indexName, indexType, indexDataList, indexIdField, null);
     }
 
     public void index(String indexName, String indexType, List<Object> indexDataList, String indexIdField, Map<String, String> restParameters) throws IOException {
@@ -203,12 +203,12 @@ public class SaasElasticsearchService {
 
             while(var7.hasNext()) {
                 Entry<String, String> parameter = (Entry)var7.next();
-                bulkBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                bulkBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
         try {
-            BulkResult bulkResult = (BulkResult)this.jestHttpClient.execute(bulkBuilder.build());
+            BulkResult bulkResult = this.jestHttpClient.execute(bulkBuilder.build());
             if (!bulkResult.isSucceeded()) {
                 throw new IOException(bulkResult.getJsonString());
             } else {
@@ -221,7 +221,7 @@ public class SaasElasticsearchService {
     }
 
     public void updateByQuery(String indexName, String indexType, Map<String, Object> queries, Map<String, Object> sources) throws IOException, VersionConflictException {
-        this.updateByQuery(indexName, indexType, queries, sources, (Map)null);
+        this.updateByQuery(indexName, indexType, queries, sources, null);
     }
 
     public void updateByQuery(String indexName, String indexType, Map<String, Object> queries, Map<String, Object> sources, Map<String, String> restParameters) throws IOException, VersionConflictException {
@@ -231,7 +231,7 @@ public class SaasElasticsearchService {
 
         while(var8.hasNext()) {
             Entry<String, Object> entry = (Entry)var8.next();
-            terms.add(QueryMap.buildMap((String)entry.getKey(), entry.getValue()));
+            terms.add(QueryMap.buildMap(entry.getKey(), entry.getValue()));
         }
 
         payload.put("query", Collections.singletonMap("bool", Collections.singletonMap("must", terms)));
@@ -241,7 +241,7 @@ public class SaasElasticsearchService {
 
         while(var10.hasNext()) {
             Entry<String, Object> entry = (Entry)var10.next();
-            scriptSource.append("ctx._source.").append((String)entry.getKey()).append(' ').append('=').append(' ').append("params.").append((String)entry.getKey()).append(';');
+            scriptSource.append("ctx._source.").append(entry.getKey()).append(' ').append('=').append(' ').append("params.").append(entry.getKey()).append(';');
         }
 
         script.put("source", scriptSource.toString());
@@ -254,12 +254,12 @@ public class SaasElasticsearchService {
 
             while(var17.hasNext()) {
                 Entry<String, String> parameter = (Entry)var17.next();
-                updateByQueryBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                updateByQueryBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
         try {
-            UpdateByQueryResult updateByQueryResult = (UpdateByQueryResult)this.jestHttpClient.execute(updateByQueryBuilder.build());
+            UpdateByQueryResult updateByQueryResult = this.jestHttpClient.execute(updateByQueryBuilder.build());
             if (!updateByQueryResult.isSucceeded()) {
                 if (updateByQueryResult.getConflictsCount() != 0L) {
                     throw new VersionConflictException(updateByQueryResult.getJsonString());
@@ -276,7 +276,7 @@ public class SaasElasticsearchService {
     }
 
     public void delete(String indexName, String indexType, Object indexId) throws IOException, DocumentNotFoundException {
-        this.delete(indexName, indexType, indexId, (Map)null);
+        this.delete(indexName, indexType, indexId, null);
     }
 
     public void delete(String indexName, String indexType, Object indexId, Map<String, String> restParameters) throws IOException, DocumentNotFoundException {
@@ -298,7 +298,7 @@ public class SaasElasticsearchService {
     }
 
     public void deleteByQuery(String indexName, String indexType, Map<String, Object> queries) throws IOException {
-        this.deleteByQuery(indexName, indexType, queries, (Map)null);
+        this.deleteByQuery(indexName, indexType, queries, null);
     }
 
     public void deleteByQuery(String indexName, String indexType, Map<String, Object> queries, Map<String, String> restParameters) throws IOException {
@@ -307,17 +307,17 @@ public class SaasElasticsearchService {
 
         while(var6.hasNext()) {
             Entry<String, Object> entry = (Entry)var6.next();
-            boolQueryBuilder.must(QueryBuilders.termQuery((String)entry.getKey(), entry.getValue()));
+            boolQueryBuilder.must(QueryBuilders.termQuery(entry.getKey(), entry.getValue()));
         }
 
         String queryString = (new SearchSourceBuilder()).query(boolQueryBuilder).toString();
-        io.searchbox.core.DeleteByQuery.Builder deleteByQueryBuilder = (io.searchbox.core.DeleteByQuery.Builder)((io.searchbox.core.DeleteByQuery.Builder)(new io.searchbox.core.DeleteByQuery.Builder(queryString)).addIndex(indexName)).addType(indexType);
+        io.searchbox.core.DeleteByQuery.Builder deleteByQueryBuilder = ((new io.searchbox.core.DeleteByQuery.Builder(queryString)).addIndex(indexName)).addType(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var8 = restParameters.entrySet().iterator();
 
             while(var8.hasNext()) {
                 Entry<String, String> parameter = (Entry)var8.next();
-                deleteByQueryBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                deleteByQueryBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
@@ -335,17 +335,17 @@ public class SaasElasticsearchService {
     }
 
     public <T> T get(String indexName, String indexType, Object indexId, Class<T> resultType) throws IOException {
-        return this.get(indexName, indexType, indexId, (Map<String, String>) null, resultType);
+        return this.get(indexName, indexType, indexId, null, resultType);
     }
 
     public <T> T get(String indexName, String indexType, Object indexId, Map<String, String> restParameters, Class<T> resultType) throws IOException {
-        io.searchbox.core.Get.Builder getBuilder = (io.searchbox.core.Get.Builder)(new io.searchbox.core.Get.Builder(indexName, indexId.toString())).type(indexType);
+        io.searchbox.core.Get.Builder getBuilder = (new io.searchbox.core.Get.Builder(indexName, indexId.toString())).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
 
             while(var7.hasNext()) {
                 Entry<String, String> parameter = (Entry)var7.next();
-                getBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                getBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
@@ -369,23 +369,23 @@ public class SaasElasticsearchService {
     }
 
     public SearchResult search(String indexName, String indexType, SearchSourceBuilder searchSourceBuilder) throws IOException {
-        return this.search(indexName, indexType, searchSourceBuilder, (Map)null);
+        return this.search(indexName, indexType, searchSourceBuilder, null);
     }
 
     public SearchResult search(String indexName, String indexType, SearchSourceBuilder searchSourceBuilder, Map<String, String> restParameters) throws IOException {
         String query = searchSourceBuilder.toString();
-        io.searchbox.core.Search.Builder searchBuilder = (io.searchbox.core.Search.Builder)((io.searchbox.core.Search.Builder)(new io.searchbox.core.Search.Builder(query)).addIndex(indexName)).addType(indexType);
+        io.searchbox.core.Search.Builder searchBuilder = ((new io.searchbox.core.Search.Builder(query)).addIndex(indexName)).addType(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
 
             while(var7.hasNext()) {
                 Entry<String, String> parameter = (Entry)var7.next();
-                searchBuilder.setParameter((String)parameter.getKey(), parameter.getValue());
+                searchBuilder.setParameter(parameter.getKey(), parameter.getValue());
             }
         }
 
         try {
-            SearchResult searchResult = (SearchResult)this.jestHttpClient.execute(searchBuilder.build());
+            SearchResult searchResult = this.jestHttpClient.execute(searchBuilder.build());
             if (!searchResult.isSucceeded()) {
                 throw new IOException(searchResult.getJsonString());
             } else {

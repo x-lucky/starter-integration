@@ -20,8 +20,6 @@ import java.util.List;
  */
 @Configuration
 public class ElasticsearchAutoConfiguration {
-    public ElasticsearchAutoConfiguration() {
-    }
     @Value("${elasticsearch.host}")
     private String host;
     @Value("${elasticsearch.timeout:10000}")

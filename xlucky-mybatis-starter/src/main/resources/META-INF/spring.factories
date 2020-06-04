@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.xlucky.framework.mybatis.config.MasterMybatisDatasource,\
+cn.xlucky.framework.mybatis.config.SlaveMybatisDatasource

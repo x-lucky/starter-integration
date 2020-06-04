@@ -1,4 +1,4 @@
-package cn.xlucky.framework.elasticsearch.apollo.config;
+package cn.xlucky.framework.apollo.config;
 
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;

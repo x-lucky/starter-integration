@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.xlucky.framework.elasticsearch.apollo.config.PropertiesRefresherConfig
+cn.xlucky.framework.apollo.config.PropertiesRefresherConfig
