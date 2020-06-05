@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.xlucky.framework.web.config.WebAutoConfig,\
+cn.xlucky.framework.web.config.ExceptionCodeConfig,\
+cn.xlucky.framework.web.config.SwaggerConfig,\
+cn.xlucky.framework.web.config.InterceptorConfig

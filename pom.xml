@@ -29,6 +29,7 @@
         <module>xlucky-elasticsearch-starter</module>
         <module>xlucky-mybatis-starter</module>
         <module>xlucky-test</module>
+        <module>xlucky-web-starter</module>
     </modules>
 
     <properties>
