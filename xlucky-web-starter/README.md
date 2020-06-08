@@ -43,7 +43,7 @@ swagger:
 ```
 
 启动类需要添加扫描路径
-@SpringBootApplication(scanBasePackages = "cn.xlucky.framework")
+@SpringBootApplication(scanBasePackages = "cn.xlucky.framework.web.config")
 
 
 

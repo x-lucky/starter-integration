@@ -3,7 +3,6 @@ package cn.xlucky.framework.web.config;
 import cn.xlucky.framework.web.exception.BusinessExceptionHandler;
 import cn.xlucky.framework.web.interceptor.LogUuidInterceptor;
 import cn.xlucky.framework.web.util.SpringContextUtil;
-import org.mapstruct.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

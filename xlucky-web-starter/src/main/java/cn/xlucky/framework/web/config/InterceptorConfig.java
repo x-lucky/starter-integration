@@ -1,8 +1,6 @@
 package cn.xlucky.framework.web.config;
 
-import cn.xlucky.framework.web.interceptor.LogUuidInterceptor;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -13,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import javax.annotation.Resource;
-
 
 /**
  * 日志拦截
@@ -50,6 +47,6 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         //swagger2
         registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-        super.addResourceHandlers(registry);
     }
 }
+
