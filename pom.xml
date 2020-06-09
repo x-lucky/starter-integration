@@ -30,6 +30,7 @@
         <module>xlucky-mybatis-starter</module>
         <module>xlucky-test</module>
         <module>xlucky-web-starter</module>
+        <module>xlucky-redis-starter</module>
     </modules>
 
     <properties>

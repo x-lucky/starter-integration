@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+cn.xlucky.framework.redis.config.RedisAutoConfiguration,\
+cn.xlucky.framework.redis.config.RedisLockAutoConfigure
