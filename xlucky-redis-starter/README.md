@@ -18,10 +18,11 @@ spring:
             nodes: 127.0.0.1:6379,127.0.0.1:6389
         lettuce:
             pool:
-                max-active: 50
-                max-idle: 20
-                min-idle: 5
-        timeout: 5000
+                max-active: 50 #最大连接数
+                max-idle: 20 #最大空闲连接
+                min-idle: 5 #最小空闲连接
+                max-wait: 3000 #连接池最大阻塞等待时间 ms
+        timeout: 5000 #连接超时时间 ms
 
 ```
 

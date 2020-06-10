@@ -36,7 +36,7 @@ public class RedisAutoConfiguration {
     }
 
     @Value("${spring.redis.cluster.topology-refresh-period:5}")
-    private long topologyRefreshPeriod = 5L;
+    private long topologyRefreshPeriod = 10L;
 
 
     /**
@@ -87,12 +87,16 @@ public class RedisAutoConfiguration {
 
     /**
      * 配置LettuceClientConfiguration 包括线程池配置和安全项配置
-     * 见 https://github.com/lettuce-io/lettuce-core/wiki/Client-options#periodic-cluster-topology-refresh
+     * 见 https://github.com/lettuce-io/lettuce-core/issues/240
      * @param genericObjectPoolConfig common-pool2线程池
      * @return lettuceClientConfiguration
      */
     private LettuceClientConfiguration getLettuceClientConfiguration(GenericObjectPoolConfig genericObjectPoolConfig) {
         ClusterTopologyRefreshOptions topologyRefreshOptions = ClusterTopologyRefreshOptions.builder()
+                // 开启全部自适应刷新
+                .enableAllAdaptiveRefreshTriggers()
+                // 自适应刷新超时时间(默认30秒)
+                .adaptiveRefreshTriggersTimeout(ClusterTopologyRefreshOptions.DEFAULT_ADAPTIVE_REFRESH_TIMEOUT_DURATION)
                 // 周期刷新 默认五秒
                 .enablePeriodicRefresh(Duration.ofSeconds(this.topologyRefreshPeriod))
                 .build();
