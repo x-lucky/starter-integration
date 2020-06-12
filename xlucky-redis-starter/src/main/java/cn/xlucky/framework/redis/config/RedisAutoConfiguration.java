@@ -38,6 +38,8 @@ public class RedisAutoConfiguration {
     @Value("${spring.redis.cluster.topology-refresh-period:5}")
     private long topologyRefreshPeriod = 10L;
 
+    @Value("${spring.application.name:lettuce}")
+    private String appName;
 
     /**
      * 为RedisTemplate配置Redis连接工厂实现
@@ -103,8 +105,7 @@ public class RedisAutoConfiguration {
         return LettucePoolingClientConfiguration.builder()
                 .poolConfig(genericObjectPoolConfig)
                 .clientOptions(ClusterClientOptions.builder().topologyRefreshOptions(topologyRefreshOptions).build())
-                //将appID传入连接，方便Redis监控中查看
-//                .clientName(appName + "_lettuce")
+                .clientName(appName)
                 .build();
     }
 
