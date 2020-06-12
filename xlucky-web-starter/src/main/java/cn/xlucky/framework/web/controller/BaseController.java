@@ -1,7 +1,7 @@
 package cn.xlucky.framework.web.controller;
 
-import cn.xlucky.framework.web.dto.RestResult;
-import cn.xlucky.framework.web.dto.enums.ResultCodeEnum;
+import cn.xlucky.framework.dto.RestResult;
+import cn.xlucky.framework.dto.enums.ResultCodeEnum;
 
 
 /**

@@ -10,7 +10,7 @@ package cn.xlucky.framework.redis.lock;
  */
 public interface ICacheLockManager {
     /**
-     * 获取lock
+     * 获取lock,立刻返回结果，不会阻塞
      * <p>
      *
      * @param key
@@ -21,7 +21,7 @@ public interface ICacheLockManager {
      * @date 2020/6/9 15:22
      * @version 1.0.0
      */
-    boolean getLock(String key, String tokenVersion, int timeout);
+    boolean tryLock(String key, String tokenVersion, int timeout);
 
     /**
      * 获取lock

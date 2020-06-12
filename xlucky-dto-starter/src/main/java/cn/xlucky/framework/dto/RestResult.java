@@ -1,11 +1,11 @@
-package cn.xlucky.framework.web.dto;
+package cn.xlucky.framework.dto;
 
-import cn.xlucky.framework.web.dto.enums.ResultCodeEnum;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import cn.xlucky.framework.dto.enums.ResultCodeEnum;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 

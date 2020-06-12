@@ -1,7 +1,7 @@
 package cn.xlucky.framework.web.exception;
 
-import cn.xlucky.framework.web.dto.RestResult;
-import cn.xlucky.framework.web.dto.enums.ResultCodeEnum;
+import cn.xlucky.framework.dto.RestResult;
+import cn.xlucky.framework.dto.enums.ResultCodeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;

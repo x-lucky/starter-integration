@@ -1,4 +1,4 @@
-package cn.xlucky.framework.web.dto;
+package cn.xlucky.framework.dto;
 
 
 import java.io.Serializable;

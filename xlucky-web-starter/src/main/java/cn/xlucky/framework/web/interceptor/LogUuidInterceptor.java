@@ -1,6 +1,6 @@
 package cn.xlucky.framework.web.interceptor;
 
-import cn.xlucky.framework.web.constant.CommonConstant;
+import cn.xlucky.framework.constant.CommonConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.core.Ordered;

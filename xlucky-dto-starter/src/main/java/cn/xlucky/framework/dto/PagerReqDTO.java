@@ -1,4 +1,4 @@
-package cn.xlucky.framework.web.dto;
+package cn.xlucky.framework.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;

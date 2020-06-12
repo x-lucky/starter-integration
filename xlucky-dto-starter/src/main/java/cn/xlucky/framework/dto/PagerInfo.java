@@ -1,4 +1,4 @@
-package cn.xlucky.framework.mybatis.dto;
+package cn.xlucky.framework.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;

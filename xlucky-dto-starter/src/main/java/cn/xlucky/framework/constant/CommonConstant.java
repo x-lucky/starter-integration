@@ -1,4 +1,4 @@
-package cn.xlucky.framework.web.constant;
+package cn.xlucky.framework.constant;
 
 
 /**

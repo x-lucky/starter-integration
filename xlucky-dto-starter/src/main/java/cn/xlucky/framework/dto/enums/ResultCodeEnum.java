@@ -1,4 +1,4 @@
-package cn.xlucky.framework.web.dto.enums;
+package cn.xlucky.framework.dto.enums;
 
 
 /**

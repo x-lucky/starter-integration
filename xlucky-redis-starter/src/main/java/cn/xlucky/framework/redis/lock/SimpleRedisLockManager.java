@@ -22,7 +22,7 @@ public class SimpleRedisLockManager implements ICacheLockManager {
     }
 
     @Override
-    public boolean getLock(String key, String tokenVersion, int timeout) {
+    public boolean tryLock(String key, String tokenVersion, int timeout) {
         List<String> keys = new ArrayList();
         keys.add(key);
         Object result = this.redisTemplate.execute(GET_LOCK_LUA_SCRIPT, keys, new Object[]{tokenVersion, String.valueOf(timeout)});
