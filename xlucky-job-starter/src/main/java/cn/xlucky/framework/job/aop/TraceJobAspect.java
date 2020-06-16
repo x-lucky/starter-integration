@@ -33,7 +33,7 @@ public class TraceJobAspect {
         try {
             String uuid = UUID.randomUUID().toString().replaceAll("-", "");
             MDC.put(CommonConstant.LOG_UUID_MDC_KEY, uuid);
-            XxlJobLogger.log("{0}-任务执行器; {1}", uuid, this.getClass().getName());
+            XxlJobLogger.log("{}-jobHandler name:{}", uuid, this.getClass().getName());
             var2 = pjp.proceed();
         } finally {
             MDC.remove(CommonConstant.LOG_UUID_MDC_KEY);
