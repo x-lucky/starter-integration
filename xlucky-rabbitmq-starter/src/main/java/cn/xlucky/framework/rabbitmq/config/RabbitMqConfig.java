@@ -37,7 +37,8 @@ import org.springframework.context.annotation.Scope;
 @Slf4j
 @Data
 public class RabbitMqConfig {
-    public static final String RABBIT_CONTAINER_FACTORY = "ms_containerFactory";
+    public static final String RABBIT_MANUAL_CONTAINER_FACTORY = "ms_manualContainerFactory";
+    public static final String RABBIT_NONE_CONTAINER_FACTORY = "ms_noneContainerFactory";
     public static final String RABBIT_CONNECTION_FACTORY = "ms_connectionFactory";
     private String address;
     private String username;
@@ -67,17 +68,29 @@ public class RabbitMqConfig {
         return connectionFactory;
     }
 
-    @Bean(name = {RABBIT_CONTAINER_FACTORY})
-    @ConditionalOnMissingBean(name = RABBIT_CONTAINER_FACTORY)
-    public SimpleRabbitListenerContainerFactory containerFactory(@Qualifier(RABBIT_CONNECTION_FACTORY) ConnectionFactory connectionFactory) {
+    @Bean(name = {RABBIT_MANUAL_CONTAINER_FACTORY})
+    public SimpleRabbitListenerContainerFactory manualContainerFactory(@Qualifier(RABBIT_CONNECTION_FACTORY) ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setPrefetchCount(this.prefetchCount);
         factory.setConcurrentConsumers(this.concurrency);
         factory.setMessageConverter(this.rabbitMessageConverter());
         factory.setConnectionFactory(connectionFactory);
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        factory.setDefaultRequeueRejected(Boolean.FALSE);
         return factory;
     }
+
+    @Bean(name = {RABBIT_NONE_CONTAINER_FACTORY})
+    public SimpleRabbitListenerContainerFactory noneContainerFactory(@Qualifier(RABBIT_CONNECTION_FACTORY) ConnectionFactory connectionFactory) {
+        SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
+        factory.setPrefetchCount(this.prefetchCount);
+        factory.setConcurrentConsumers(this.concurrency);
+        factory.setMessageConverter(this.rabbitMessageConverter());
+        factory.setConnectionFactory(connectionFactory);
+        factory.setAcknowledgeMode(AcknowledgeMode.NONE);
+        return factory;
+    }
+
 
     @Bean
     @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
