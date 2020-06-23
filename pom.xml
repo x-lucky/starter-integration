@@ -33,6 +33,7 @@
         <module>xlucky-web-starter</module>
         <module>xlucky-redis-starter</module>
         <module>xlucky-job-starter</module>
+        <module>xlucky-rabbitmq-starter</module>
     </modules>
 
     <properties>
