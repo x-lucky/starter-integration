@@ -68,7 +68,7 @@ public class RabbitMqConfig {
     }
 
     @Bean(name = {RABBIT_CONTAINER_FACTORY})
-    @ConditionalOnMissingBean
+    @ConditionalOnMissingBean(name = RABBIT_CONTAINER_FACTORY)
     public SimpleRabbitListenerContainerFactory containerFactory(@Qualifier(RABBIT_CONNECTION_FACTORY) ConnectionFactory connectionFactory) {
         SimpleRabbitListenerContainerFactory factory = new SimpleRabbitListenerContainerFactory();
         factory.setPrefetchCount(this.prefetchCount);
