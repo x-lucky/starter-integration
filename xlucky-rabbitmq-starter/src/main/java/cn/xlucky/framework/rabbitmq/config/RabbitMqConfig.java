@@ -76,6 +76,7 @@ public class RabbitMqConfig {
         factory.setMessageConverter(this.rabbitMessageConverter());
         factory.setConnectionFactory(connectionFactory);
         factory.setAcknowledgeMode(AcknowledgeMode.MANUAL);
+        //设置当rabbitmq收到nack/reject确认信息时的处理方式，设为true，扔回queue头部，设为false，丢弃。
         factory.setDefaultRequeueRejected(Boolean.FALSE);
         return factory;
     }
