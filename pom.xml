@@ -25,15 +25,16 @@
     </distributionManagement>
 
     <modules>
-        <module>xlucky-dto-starter</module>
+        <module>xlucky-common-starter</module>
+        <module>xlucky-cloud-starter</module>
         <module>xlucky-apollo-starter</module>
         <module>xlucky-elasticsearch-starter</module>
         <module>xlucky-mybatis-starter</module>
-        <module>xlucky-test</module>
         <module>xlucky-web-starter</module>
         <module>xlucky-redis-starter</module>
         <module>xlucky-job-starter</module>
         <module>xlucky-rabbitmq-starter</module>
+        <module>xlucky-dubbo-starter</module>
     </modules>
 
     <properties>
@@ -46,6 +47,9 @@
         <pageHelper.version>5.1.10</pageHelper.version>
         <fastjson.version>1.2.70</fastjson.version>
         <xxl.version>2.2.0</xxl.version>
+        <dubbo.version>2.7.6</dubbo.version>
+        <nacos.version>1.2.0</nacos.version>
+        <spring-cloud.nacos>2.1.1.RELEASE</spring-cloud.nacos>
     </properties>
 
     <dependencyManagement>
@@ -57,6 +61,11 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter</artifactId>
+                <version>${spring-cloud.version}</version>
             </dependency>
             <!-- Spring Boot web依赖 -->
             <dependency>
@@ -106,6 +115,33 @@
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl.version}</version>
             </dependency>
+            <!--dubbo-->
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-spring-boot-starter</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.dubbo</groupId>
+                <artifactId>dubbo-registry-nacos</artifactId>
+                <version>${dubbo.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+                <version>${spring-cloud.nacos}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

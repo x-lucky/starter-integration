@@ -1,7 +1,7 @@
 package cn.xlucky.framework.mybatis.interceptor;
 
-import cn.xlucky.framework.dto.PagerHelper;
-import cn.xlucky.framework.dto.PagerInfo;
+import cn.xlucky.framework.common.dto.PagerHelper;
+import cn.xlucky.framework.common.dto.PagerInfo;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.cache.Cache;
 import com.github.pagehelper.cache.CacheFactory;

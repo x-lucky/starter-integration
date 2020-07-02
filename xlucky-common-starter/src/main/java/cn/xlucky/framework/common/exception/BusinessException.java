@@ -1,7 +1,7 @@
-package cn.xlucky.framework.web.exception;
+package cn.xlucky.framework.common.exception;
 
+import cn.xlucky.framework.common.config.ExceptionCodeConfig;
 import cn.xlucky.framework.common.dto.enums.ResultCodeEnum;
-import cn.xlucky.framework.web.config.ExceptionCodeConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
@@ -19,38 +19,13 @@ import java.util.UUID;
  * @date 2020/3/20
  * @version 1.0.0
  */
-public class BusinessException extends Exception {
+public class BusinessException extends RuntimeException {
     private static final Logger LOG = LoggerFactory.getLogger(BusinessException.class);
     private Object[] params;
     private int exCode;
     private String exDesc;
     private String exStack;
 
-    public BusinessException(int exCode, String exDesc) {
-        super(String.valueOf(exCode));
-        this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, exDesc));
-    }
-
-    public BusinessException(int exCode, String exDesc, Throwable e) {
-        super(String.valueOf(exCode), e);
-        this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, exDesc));
-    }
-
-    public BusinessException(int exCode, String exDesc, Object... params) {
-        super(String.valueOf(exCode));
-        this.params = params;
-        this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, exDesc));
-    }
-
-    public BusinessException(int exCode, String exDesc, Throwable e, Object... params) {
-        super(String.valueOf(exCode), e);
-        this.params = params;
-        this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, exDesc));
-    }
 
     public BusinessException(int exCode) {
         super(String.valueOf(exCode));

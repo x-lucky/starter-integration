@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-PropertiesRefresherConfig
+cn.xlucky.framework.web.config.ExceptionCodeConfig

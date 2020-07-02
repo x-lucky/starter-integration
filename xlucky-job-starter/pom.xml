@@ -21,7 +21,7 @@
         </dependency>
         <dependency>
             <groupId>cn.xlucky</groupId>
-            <artifactId>xlucky-dto-starter</artifactId>
+            <artifactId>xlucky-common-starter</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--aop-->
