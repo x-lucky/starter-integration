@@ -17,6 +17,8 @@ http://localhost:8848/nacos/index.html#/
 yml配置
 ```
 dubbo:
+  application:
+    logger: slf4j
   protocol:
     name: dubbo
     port: -1
@@ -27,7 +29,7 @@ dubbo:
   consumer:
     check: false
     retries: 0
-    validation : true
+    validation: true
     timeout: 600000
   provider:
     timeout: 600000
