@@ -24,8 +24,6 @@ dubbo:
     port: -1
   registry:
     address: nacos://${nacos.server-address}:${nacos.port}/?username=${nacos.username}&password=${nacos.password}
-  reference:
-    check: false
   consumer:
     check: false
     retries: 0
