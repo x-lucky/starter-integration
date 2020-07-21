@@ -63,11 +63,8 @@ public class LogUuidInterceptor implements HandlerInterceptor {
     private void setResponseTraceId(final HttpServletRequest request, final HttpServletResponse response) {
         //优先从header中获取uuid
         LogTracing.start(request.getHeader(CommonConstant.LOG_TRACE_ID));
-        setResponseTraceId(response);
-    }
-
-    private void setResponseTraceId(HttpServletResponse response) {
         response.addHeader(CommonConstant.LOG_TRACE_ID, LogTracing.getTraceId());
         log.info("设置响应TraceId;");
     }
+
 }

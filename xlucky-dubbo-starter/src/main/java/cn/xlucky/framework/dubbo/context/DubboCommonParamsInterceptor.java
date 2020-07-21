@@ -1,7 +1,6 @@
 package cn.xlucky.framework.dubbo.context;
 
 import cn.xlucky.framework.common.constant.CommonConstant;
-import cn.xlucky.framework.common.dto.BaseDto;
 import cn.xlucky.framework.common.log.LogTracing;
 import org.apache.dubbo.common.extension.Activate;
 import org.apache.dubbo.rpc.Filter;
@@ -32,27 +31,15 @@ public class DubboCommonParamsInterceptor implements Filter {
 
         Result var4;
         try {
-            context.setAttachment(CommonConstant.LOG_TRACE_ID, LogTracing.getTraceId());
-            this.setRequestParamOperator(invocation.getArguments());
+            String traceId = LogTracing.getTraceId();
+            if (traceId != null) {
+                context.setAttachment(CommonConstant.LOG_TRACE_ID, traceId);
+            }
             var4 = invoker.invoke(invocation);
         } finally {
             context.removeAttachment(CommonConstant.LOG_TRACE_ID);
         }
-
         return var4;
-    }
-
-    private void setRequestParamOperator(Object[] args) {
-        if (args != null && args.length != 0) {
-            Object[] var2 = args;
-            int var3 = args.length;
-            for(int var4 = 0; var4 < var3; ++var4) {
-                Object arg = var2[var4];
-                if (arg instanceof BaseDto) {
-                    BaseDto var6 = (BaseDto)arg;
-                }
-            }
-        }
     }
 
 }

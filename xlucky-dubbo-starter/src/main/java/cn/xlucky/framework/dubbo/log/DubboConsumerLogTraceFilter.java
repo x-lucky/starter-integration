@@ -27,7 +27,10 @@ public class DubboConsumerLogTraceFilter implements Filter {
 
     @Override
     public Result invoke(Invoker<?> invoker, Invocation invocation) throws RpcException {
-        invocation.setAttachment(CommonConstant.LOG_TRACE_ID, LogTracing.getTraceId());
+        String traceId = LogTracing.getTraceId();
+        if (traceId != null) {
+            invocation.setAttachment(CommonConstant.LOG_TRACE_ID, traceId);
+        }
         return invoker.invoke(invocation);
     }
 }

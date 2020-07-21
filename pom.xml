@@ -35,6 +35,7 @@
         <module>xlucky-job-starter</module>
         <module>xlucky-rabbitmq-starter</module>
         <module>xlucky-dubbo-starter</module>
+        <module>xlucky-kafka-starter</module>
     </modules>
 
     <properties>

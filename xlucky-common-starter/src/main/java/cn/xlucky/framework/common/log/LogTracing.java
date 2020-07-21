@@ -38,7 +38,7 @@ public class LogTracing {
     }
 
     public static String getTraceId() {
-        return start();
+        return MDC.get(CommonConstant.LOG_TRACE_ID);
     }
 
     public static void end() {

@@ -57,7 +57,7 @@ public class DubboProviderParamsLogFilter implements Filter {
             this.out(result, paramsAspectEntity);
             var5 = result;
         } finally {
-            MDC.clear();
+            LogTracing.end();
         }
 
         return var5;
