@@ -1,6 +1,4 @@
-package cn.xlucky.framework.dubbo.execption;
-
-import cn.xlucky.framework.common.dto.RestResult;
+package cn.xlucky.framework.dubbo.exception;
 
 public abstract class AbstractExceptionInterceptor{
 

@@ -1,5 +1,5 @@
 dubboProviderParamsLogFilter=cn.xlucky.framework.dubbo.log.DubboProviderParamsLogFilter
 dubboConsumerLogTraceFilter=cn.xlucky.framework.dubbo.log.DubboConsumerLogTraceFilter
-providerexception=cn.xlucky.framework.dubbo.execption.ProviderExceptionHandler
-consumerexception=cn.xlucky.framework.dubbo.execption.ConsumerExceptionFilter
+providerexception=cn.xlucky.framework.dubbo.exception.ProviderExceptionHandler
+consumerexception=cn.xlucky.framework.dubbo.exception.ConsumerExceptionFilter
 operatorparaminterceptor=cn.xlucky.framework.dubbo.context.DubboCommonParamsInterceptor

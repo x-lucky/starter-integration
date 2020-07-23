@@ -1,4 +1,4 @@
-package cn.xlucky.framework.dubbo.execption;
+package cn.xlucky.framework.dubbo.exception;
 
 import cn.xlucky.framework.common.dto.RestResult;
 import cn.xlucky.framework.common.dto.enums.ResultCodeEnum;
