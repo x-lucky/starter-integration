@@ -339,7 +339,7 @@ public class ElasticsearchService {
     }
 
     public <T> T get(String indexName, String indexType, Object indexId, Map<String, String> restParameters, Class<T> resultType) throws IOException {
-        io.searchbox.core.Get.Builder getBuilder = (new io.searchbox.core.Get.Builder(indexName, indexId.toString())).type(indexType);
+        io.searchbox.core.Get.Builder getBuilder = new io.searchbox.core.Get.Builder(indexName, indexId.toString()).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
 
@@ -374,7 +374,7 @@ public class ElasticsearchService {
 
     public SearchResult search(String indexName, String indexType, SearchSourceBuilder searchSourceBuilder, Map<String, String> restParameters) throws IOException {
         String query = searchSourceBuilder.toString();
-        io.searchbox.core.Search.Builder searchBuilder = ((new io.searchbox.core.Search.Builder(query)).addIndex(indexName)).addType(indexType);
+        io.searchbox.core.Search.Builder searchBuilder = new io.searchbox.core.Search.Builder(query).addIndex(indexName).addType(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
 
