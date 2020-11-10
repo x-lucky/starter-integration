@@ -41,15 +41,15 @@ import org.slf4j.LoggerFactory;
  * @date 2020/5/29
  * @version 1.0.0
  */
-public class SaasElasticsearchService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SaasElasticsearchService.class);
+public class ElasticsearchService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchService.class);
     private static final String JSON_KEY_RESULT = "result";
     private static final String JSON_VALUE_RESULT_NOT_FOUND = "not_found";
     private static final String JSON_KEY_FOUND = "found";
     @Resource
     private JestHttpClient jestHttpClient;
 
-    public SaasElasticsearchService() {
+    public ElasticsearchService() {
     }
 
     public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId) {
@@ -57,7 +57,7 @@ public class SaasElasticsearchService {
     }
 
     public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId, Map<String, String> restParameters) {
-        Builder indexBuilder = ((new Builder(indexData)).index(indexName)).type(indexType);
+        Builder indexBuilder = new Builder(indexData).index(indexName).type(indexType);
         if (indexId != null) {
             indexBuilder.id(indexId.toString());
         }
@@ -79,7 +79,7 @@ public class SaasElasticsearchService {
     }
 
     public Delete buildDeleteAction(String indexName, String indexType, Object indexId, Map<String, String> restParameters) {
-        io.searchbox.core.Delete.Builder deleteBuilder = ((new io.searchbox.core.Delete.Builder(indexId.toString())).index(indexName)).type(indexType);
+        io.searchbox.core.Delete.Builder deleteBuilder = (new io.searchbox.core.Delete.Builder(indexId.toString()).index(indexName)).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var6 = restParameters.entrySet().iterator();
 
@@ -167,15 +167,15 @@ public class SaasElasticsearchService {
             @Override
             public void completed(JestResult jestResult) {
                 if (jestResult.isSucceeded()) {
-                    SaasElasticsearchService.LOGGER.info("Succeeded to index document, index: {}, type: {}, id: {}, data:\n{}", new Object[]{indexName, indexType, indexId, JSON.toJSONString(indexData)});
+                    ElasticsearchService.LOGGER.info("Succeeded to index document, index: {}, type: {}, id: {}, data:\n{}", new Object[]{indexName, indexType, indexId, JSON.toJSONString(indexData)});
                 } else {
-                    SaasElasticsearchService.LOGGER.error("Failed to index document, index: {}, type: {}, id: {}, data:\n{}\n, and message:{}", new Object[]{indexName, indexType, indexId, JSON.toJSONString(indexData), jestResult.getJsonString()});
+                    ElasticsearchService.LOGGER.error("Failed to index document, index: {}, type: {}, id: {}, data:\n{}\n, and message:{}", new Object[]{indexName, indexType, indexId, JSON.toJSONString(indexData), jestResult.getJsonString()});
                 }
 
             }
             @Override
             public void failed(Exception ex) {
-                SaasElasticsearchService.LOGGER.error(String.format("Failed to index document, index: %s, type: %s, id: %s, data:\n%s", indexName, indexType, indexId, JSON.toJSONString(indexData)), ex);
+                ElasticsearchService.LOGGER.error(String.format("Failed to index document, index: %s, type: %s, id: %s, data:\n%s", indexName, indexType, indexId, JSON.toJSONString(indexData)), ex);
             }
         });
     }
@@ -248,7 +248,7 @@ public class SaasElasticsearchService {
         script.put("params", sources);
         script.put("lang", ScriptLanguage.PAINLESS.pathParameterName);
         payload.put("script", script);
-        io.searchbox.core.UpdateByQuery.Builder updateByQueryBuilder = (io.searchbox.core.UpdateByQuery.Builder)((io.searchbox.core.UpdateByQuery.Builder)(new io.searchbox.core.UpdateByQuery.Builder(payload)).addIndex(indexName)).addType(indexType);
+        io.searchbox.core.UpdateByQuery.Builder updateByQueryBuilder = ((new io.searchbox.core.UpdateByQuery.Builder(payload)).addIndex(indexName)).addType(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var17 = restParameters.entrySet().iterator();
 

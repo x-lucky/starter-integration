@@ -1,6 +1,6 @@
 package cn.xlucky.framework.elasticsearch.config;
 
-import cn.xlucky.framework.elasticsearch.SaasElasticsearchService;
+import cn.xlucky.framework.elasticsearch.ElasticsearchService;
 import com.google.common.base.Splitter;
 import io.searchbox.client.JestClientFactory;
 import io.searchbox.client.config.HttpClientConfig;
@@ -45,7 +45,7 @@ public class ElasticsearchAutoConfiguration {
     }
 
     @Bean
-    public SaasElasticsearchService saasElasticsearchService() {
-        return new SaasElasticsearchService();
+    public ElasticsearchService saasElasticsearchService() {
+        return new ElasticsearchService();
     }
 }

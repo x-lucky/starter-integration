@@ -9,6 +9,12 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
 import org.apache.kafka.common.header.Headers;
 
+/**
+ * 生产者uuid
+ * @author xlucky
+ * @date 2020/7/21
+ * @version 1.0.0
+ */
 public class KafkaProducerInterceptor implements ProducerInterceptor {
 
     public KafkaProducerInterceptor() {

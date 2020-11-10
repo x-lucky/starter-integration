@@ -5,7 +5,7 @@
 
 ```
 使用版本:
-es测试版本:6.3.0
+es测试版本:6.8.3
 <dependency>
 	<groupId>cn.xlucky</groupId>
 	<artifactId>xlucky-elasticsearch-starter</artifactId>
@@ -15,7 +15,7 @@ es测试版本:6.3.0
 yml配置
 ```
 elasticsearch:
-    host: http://127.0.0.1:9200/,http://127.0.0.1:9300/
+    host: http://127.0.0.1:9200,http://127.0.0.1:9300
     maxTotalConnection: 300
     timeout: 10000
 ```
