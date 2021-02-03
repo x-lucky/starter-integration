@@ -36,6 +36,7 @@
         <module>xlucky-rabbitmq-starter</module>
         <module>xlucky-dubbo-starter</module>
         <module>xlucky-kafka-starter</module>
+        <module>xlucky-common-test-util</module>
     </modules>
 
     <properties>
