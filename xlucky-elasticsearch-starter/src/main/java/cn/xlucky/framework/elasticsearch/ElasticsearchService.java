@@ -52,14 +52,14 @@ public class ElasticsearchService {
     public ElasticsearchService() {
     }
 
-    public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId) {
+    public <T> Index buildIndexAction(String indexName, String indexType, T indexData, String indexId) {
         return this.buildIndexAction(indexName, indexType, indexData, indexId, null);
     }
 
-    public Index buildIndexAction(String indexName, String indexType, Object indexData, Object indexId, Map<String, String> restParameters) {
+    public <T> Index buildIndexAction(String indexName, String indexType, T indexData, String indexId, Map<String, String> restParameters) {
         Builder indexBuilder = new Builder(indexData).index(indexName).type(indexType);
         if (indexId != null) {
-            indexBuilder.id(indexId.toString());
+            indexBuilder.id(indexId);
         }
 
         if (!mapIsEmpty(restParameters)) {
@@ -74,12 +74,12 @@ public class ElasticsearchService {
         return indexBuilder.build();
     }
 
-    public Delete buildDeleteAction(String indexName, String indexType, Object indexId) {
+    public Delete buildDeleteAction(String indexName, String indexType, String indexId) {
         return this.buildDeleteAction(indexName, indexType, indexId, null);
     }
 
-    public Delete buildDeleteAction(String indexName, String indexType, Object indexId, Map<String, String> restParameters) {
-        io.searchbox.core.Delete.Builder deleteBuilder = (new io.searchbox.core.Delete.Builder(indexId.toString()).index(indexName)).type(indexType);
+    public Delete buildDeleteAction(String indexName, String indexType, String indexId, Map<String, String> restParameters) {
+        io.searchbox.core.Delete.Builder deleteBuilder = (new io.searchbox.core.Delete.Builder(indexId).index(indexName)).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var6 = restParameters.entrySet().iterator();
 
@@ -130,11 +130,11 @@ public class ElasticsearchService {
         }
     }
 
-    public void index(String indexName, String indexType, Object indexData, Object indexId) throws IOException {
+    public <T> void index(String indexName, String indexType, T indexData, String indexId) throws IOException {
         this.index(indexName, indexType, indexData, indexId, null);
     }
 
-    public void index(String indexName, String indexType, Object indexData, Object indexId, Map<String, String> restParameters) throws IOException {
+    public <T> void index(String indexName, String indexType, T indexData, String indexId, Map<String, String> restParameters) throws IOException {
         try {
             JestResult jestResult = this.jestHttpClient.execute(this.buildIndexAction(indexName, indexType, indexData, indexId, restParameters));
             if (!jestResult.isSucceeded()) {
@@ -148,11 +148,11 @@ public class ElasticsearchService {
         }
     }
 
-    public void indexAsync(String indexName, String indexType, Object indexData, Object indexId) {
+    public void indexAsync(String indexName, String indexType, Object indexData, String indexId) {
         this.indexAsync(indexName, indexType, indexData, indexId, null);
     }
 
-    public void indexAsync(final String indexName, final String indexType, final Object indexData, final Object indexId, Map<String, String> restParameters) {
+    public void indexAsync(final String indexName, final String indexType, final Object indexData, final String indexId, Map<String, String> restParameters) {
         io.searchbox.core.Bulk.Builder bulkBuilder = (new io.searchbox.core.Bulk.Builder()).addAction(this.buildIndexAction(indexName, indexType, indexData, indexId));
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
@@ -180,21 +180,21 @@ public class ElasticsearchService {
         });
     }
 
-    public void index(String indexName, String indexType, List<Object> indexDataList, String indexIdField) throws IOException {
+    public <T> void index(String indexName, String indexType, List<T> indexDataList, String indexIdField) throws IOException {
         this.index(indexName, indexType, indexDataList, indexIdField, null);
     }
 
-    public void index(String indexName, String indexType, List<Object> indexDataList, String indexIdField, Map<String, String> restParameters) throws IOException {
+    public <T> void index(String indexName, String indexType, List<T> indexDataList, String indexIdField, Map<String, String> restParameters) throws IOException {
         io.searchbox.core.Bulk.Builder bulkBuilder = new io.searchbox.core.Bulk.Builder();
 
         Iterator var7;
         Object indexData;
-        Object indexId;
+        String indexId;
         for(var7 = indexDataList.iterator(); var7.hasNext(); bulkBuilder.addAction(this.buildIndexAction(indexName, indexType, indexData, indexId, restParameters))) {
             indexData = var7.next();
             indexId = null;
             if (!StringUtils.isBlank(indexIdField)) {
-                indexId = reflectUtilGetter(indexData, indexIdField);
+                indexId = (String) reflectUtilGetter(indexData, indexIdField);
             }
         }
 
@@ -275,11 +275,11 @@ public class ElasticsearchService {
         }
     }
 
-    public void delete(String indexName, String indexType, Object indexId) throws IOException, DocumentNotFoundException {
+    public void delete(String indexName, String indexType, String indexId) throws IOException, DocumentNotFoundException {
         this.delete(indexName, indexType, indexId, null);
     }
 
-    public void delete(String indexName, String indexType, Object indexId, Map<String, String> restParameters) throws IOException, DocumentNotFoundException {
+    public void delete(String indexName, String indexType, String indexId, Map<String, String> restParameters) throws IOException, DocumentNotFoundException {
         try {
             JestResult jestResult = this.jestHttpClient.execute(this.buildDeleteAction(indexName, indexType, indexId, restParameters));
             if (!jestResult.isSucceeded()) {
@@ -334,12 +334,12 @@ public class ElasticsearchService {
         }
     }
 
-    public <T> T get(String indexName, String indexType, Object indexId, Class<T> resultType) throws IOException {
+    public <T> T get(String indexName, String indexType, String indexId, Class<T> resultType) throws IOException {
         return this.get(indexName, indexType, indexId, null, resultType);
     }
 
-    public <T> T get(String indexName, String indexType, Object indexId, Map<String, String> restParameters, Class<T> resultType) throws IOException {
-        io.searchbox.core.Get.Builder getBuilder = new io.searchbox.core.Get.Builder(indexName, indexId.toString()).type(indexType);
+    public <T> T get(String indexName, String indexType, String indexId, Map<String, String> restParameters, Class<T> resultType) throws IOException {
+        io.searchbox.core.Get.Builder getBuilder = new io.searchbox.core.Get.Builder(indexName, indexId).type(indexType);
         if (!mapIsEmpty(restParameters)) {
             Iterator var7 = restParameters.entrySet().iterator();
 
