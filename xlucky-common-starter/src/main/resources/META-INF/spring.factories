@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-cn.xlucky.framework.web.config.ExceptionCodeConfig
+cn.xlucky.framework.common.config.ExceptionCodeConfig

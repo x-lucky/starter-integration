@@ -1,7 +1,7 @@
 package cn.xlucky.framework.web.exception;
 
+import cn.xlucky.framework.common.config.ExceptionCodeConfig;
 import cn.xlucky.framework.common.dto.enums.ResultCodeEnum;
-import cn.xlucky.framework.web.config.ExceptionCodeConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
