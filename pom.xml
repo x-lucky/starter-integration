@@ -49,7 +49,7 @@
         <pageHelper.version>5.1.10</pageHelper.version>
         <fastjson.version>1.2.75</fastjson.version>
         <xxl.version>2.2.0</xxl.version>
-        <dubbo.version>2.7.6</dubbo.version>
+        <dubbo.version>2.7.13</dubbo.version>
         <nacos.version>1.2.0</nacos.version>
         <spring-cloud.nacos>2.1.1.RELEASE</spring-cloud.nacos>
     </properties>
