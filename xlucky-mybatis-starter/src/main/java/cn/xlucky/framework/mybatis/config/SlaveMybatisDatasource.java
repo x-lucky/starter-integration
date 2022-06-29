@@ -31,20 +31,20 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @date 2020/6/3
  * @version 1.0.0
  */
-@Configuration
-@EnableTransactionManagement
-@MapperScan(
-        basePackages = {"cn.xlucky.**.mapper.slave"},
-    sqlSessionFactoryRef = "slaveSqlSessionFactory"
-)
-@AutoConfigureBefore({DataSourceAutoConfiguration.class})
-@ConditionalOnProperty(
-    prefix = "hikari.dataSource",
-    name = {"slaveJdbcUrl"}
-)
-@ConfigurationProperties(
-    prefix = "hikari.dataSource"
-)
+//@Configuration
+//@EnableTransactionManagement
+//@MapperScan(
+//        basePackages = {"cn.xlucky.**.mapper.slave"},
+//    sqlSessionFactoryRef = "slaveSqlSessionFactory"
+//)
+//@AutoConfigureBefore({DataSourceAutoConfiguration.class})
+//@ConditionalOnProperty(
+//    prefix = "hikari.dataSource",
+//    name = {"slaveJdbcUrl"}
+//)
+//@ConfigurationProperties(
+//    prefix = "hikari.dataSource"
+//)
 @Data
 @Slf4j
 public class SlaveMybatisDatasource {
@@ -58,36 +58,36 @@ public class SlaveMybatisDatasource {
     public SlaveMybatisDatasource() {
     }
 
-    @Bean(
-        name = {"slaveSqlSessionFactory"}
-    )
-    public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDataSource") DataSource dataSource) throws Exception {
-        log.info("====== slaveSqlSessionFactory init ======");
-        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
-        factory.setDataSource(dataSource);
-        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource[] resources = resolver.getResources("classpath:mybatis-config.xml");
-        if (resources != null && resources.length > 0) {
-            factory.setConfigLocation(resources[0]);
-        }
-        return factory.getObject();
-    }
-
-    @Bean(
-        name = {"slaveDataSource"}
-    )
-    public DataSource slaveDataSource() {
-        log.info("====== slaveDataSource init ======");
-        HikariDataSource ds = new HikariDataSource();
-        ds.setDriverClassName(getDriverClassName());
-        ds.setMaximumPoolSize(getMaximumPoolSize());
-        ds.setConnectionTimeout(getConnectionTimeout());
-        ds.setJdbcUrl(getSlaveJdbcUrl());
-        ds.setUsername(getSlaveUsername());
-        ds.setPassword(getSlavePassword());
-        ds.setMinimumIdle(5);
-        ds.setIdleTimeout(120000L);
-        ds.setMaxLifetime(60000L);
-        return ds;
-    }
+//    @Bean(
+//        name = {"slaveSqlSessionFactory"}
+//    )
+//    public SqlSessionFactory slaveSqlSessionFactory(@Qualifier("slaveDataSource") DataSource dataSource) throws Exception {
+//        log.info("====== slaveSqlSessionFactory init ======");
+//        SqlSessionFactoryBean factory = new SqlSessionFactoryBean();
+//        factory.setDataSource(dataSource);
+//        ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+//        Resource[] resources = resolver.getResources("classpath:mybatis-config.xml");
+//        if (resources != null && resources.length > 0) {
+//            factory.setConfigLocation(resources[0]);
+//        }
+//        return factory.getObject();
+//    }
+//
+//    @Bean(
+//        name = {"slaveDataSource"}
+//    )
+//    public DataSource slaveDataSource() {
+//        log.info("====== slaveDataSource init ======");
+//        HikariDataSource ds = new HikariDataSource();
+//        ds.setDriverClassName(getDriverClassName());
+//        ds.setMaximumPoolSize(getMaximumPoolSize());
+//        ds.setConnectionTimeout(getConnectionTimeout());
+//        ds.setJdbcUrl(getSlaveJdbcUrl());
+//        ds.setUsername(getSlaveUsername());
+//        ds.setPassword(getSlavePassword());
+//        ds.setMinimumIdle(5);
+//        ds.setIdleTimeout(120000L);
+//        ds.setMaxLifetime(60000L);
+//        return ds;
+//    }
 }

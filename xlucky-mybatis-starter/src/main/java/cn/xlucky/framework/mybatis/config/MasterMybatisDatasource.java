@@ -35,7 +35,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ConditionalOnProperty(prefix = "hikari.datasource", name = {"masterJdbcUrl"})
 @ConfigurationProperties(prefix = "hikari.datasource")
 @MapperScan(
-        basePackages = {"cn.xlucky.**.mapper.master"},
+        basePackages = {"**.mapper"},
         sqlSessionFactoryRef = "masterSqlSessionFactory"
 )
 @Slf4j
@@ -82,6 +82,8 @@ public class MasterMybatisDatasource {
         if (resources != null && resources.length > 0) {
             factory.setConfigLocation(resources[0]);
         }
+        Resource[] mapperResources = resolver.getResources("classpath:mapper/*Mapper.xml");
+        factory.setMapperLocations(mapperResources);
 
         return factory.getObject();
     }

@@ -55,28 +55,28 @@ public class BusinessException extends Exception {
     public BusinessException(int exCode) {
         super(String.valueOf(exCode));
         this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, (String)null));
+        this.setExDesc(this.getExDescByCode(exCode, null));
     }
 
     public BusinessException(int exCode, Object... params) {
         super(String.valueOf(exCode));
         this.setExCode(exCode);
         this.params = params;
-        this.setExDesc(this.getExDescByCode(exCode, (String)null));
+        this.setExDesc(this.getExDescByCode(exCode, null));
     }
 
     public BusinessException(int exCode, Throwable e, Object... params) {
         super(String.valueOf(exCode), e);
         this.setExCode(exCode);
         this.params = params;
-        this.setExDesc(this.getExDescByCode(exCode, (String)null));
+        this.setExDesc(this.getExDescByCode(exCode, null));
         this.setExStack(this.getStackTraceMessage(e));
     }
 
     public BusinessException(int exCode, Throwable e) {
         super(String.valueOf(exCode), e);
         this.setExCode(exCode);
-        this.setExDesc(this.getExDescByCode(exCode, (String)null));
+        this.setExDesc(this.getExDescByCode(exCode, null));
         this.exStack = this.getStackTraceMessage(e);
     }
 
