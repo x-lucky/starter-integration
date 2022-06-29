@@ -44,3 +44,6 @@ logs
 /tmp
 hotspot.log
 xlucky-test/
+
+
+!mysource/*.*
