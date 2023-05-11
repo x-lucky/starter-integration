@@ -1,5 +1,6 @@
 package cn.xlucky.framework.web.config;
 
+import cn.xlucky.framework.web.aop.RequestLogAspect;
 import cn.xlucky.framework.web.exception.BusinessExceptionHandler;
 import cn.xlucky.framework.web.interceptor.LogUuidInterceptor;
 import cn.xlucky.framework.web.util.SpringContextUtil;
@@ -30,5 +31,11 @@ public class WebAutoConfig {
     public SpringContextUtil springContextUtil() {
         return new SpringContextUtil();
     }
+
+    @Bean
+    public RequestLogAspect requestLogAspect() {
+        return new RequestLogAspect();
+    }
+
 
 }
